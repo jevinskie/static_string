@@ -746,6 +746,7 @@ struct throw_exception
   }
 };
 #else
+#if defined(__EXCEPTIONS) && __EXCEPTIONS
 template<typename Exception>
 BOOST_STATIC_STRING_NORETURN
 inline
@@ -754,6 +755,16 @@ throw_exception(const char* msg)
 {
   BOOST_STATIC_STRING_THROW(Exception(msg));
 }
+#else
+template<typename Exception>
+BOOST_STATIC_STRING_NORETURN
+inline
+void
+throw_exception(const char* msg)
+{
+  BOOST_STATIC_STRING_THROW(msg);
+}
+#endif
 #endif
 
 } // detail
