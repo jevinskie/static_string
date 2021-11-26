@@ -753,7 +753,7 @@ inline
 void
 throw_exception(const char* msg)
 {
-  BOOST_STATIC_STRING_THROW(Exception(msg));
+  BOOST_STATIC_STRING_THROW(msg);
 }
 #else
 template<typename Exception>
